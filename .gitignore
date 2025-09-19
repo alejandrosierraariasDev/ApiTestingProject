@@ -9,12 +9,43 @@
 
 # Maven
 target/
+!target/maven-status/
+!target/maven-archiver/pom.properties
+!target/classes/
+!target/test-classes/
 pom.xml.versionsBackup
 dependency-reduced-pom.xml
 mvnw
 mvnw.cmd
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+# Allure Reports
+allure-report/
+allure-results/
+allure-report.zip
+allure.properties
+.allure/
+.allure/*
+.allure/**/*
+
+# Surefire Reports
+surefire-reports/
+target/surefire-reports/
+target/site/surefire-report.html
+
+# Allure Maven Plugin
+target/site/allure-maven-plugin/
+target/allure-results/
+target/allure-report/
+
+# TestNG
+**/test-output/
+**/testng-results.xml
+**/testng-failed.xml
+
+# Maven Site
+target/site/
 
 # IDE
 .idea/
