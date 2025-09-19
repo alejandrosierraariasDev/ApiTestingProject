@@ -1,9 +1,16 @@
-package com.example.tests.Api;
-import com.example.tests.ApiBaseTest;
+package com.example.tests;
+
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 public class Api extends ApiBaseTest {
+    
+    public Api() {
+        // Ensure the request spec is initialized
+        if (requestSpec == null) {
+            setup();
+        }
+    }
 
     public Response get(int id) {
         return given()

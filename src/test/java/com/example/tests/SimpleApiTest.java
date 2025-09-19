@@ -5,7 +5,9 @@ import static org.hamcrest.Matchers.equalTo;
 import com.example.utils.ApiUtils;
 import static org.hamcrest.Matchers.*;
 
+
 public class SimpleApiTest extends ApiBaseTest {
+    Api api = new Api();
 
     @Test
     public void testGetAll() {
@@ -18,12 +20,10 @@ public class SimpleApiTest extends ApiBaseTest {
                 .body("size()", greaterThan(199))
                 .body("id", hasItems(1, 100, 200));
     }
+
     @Test
     public void testGetById() {
-        given()
-                .spec(requestSpec)
-                .when()
-                .get("/todos/1")
+        api.get(1)
                 .then()
                 .statusCode(200)
                 .body("id", equalTo(1))
@@ -60,11 +60,20 @@ public class SimpleApiTest extends ApiBaseTest {
                 .body("completed", is(true));
     }
     @Test
-    public void testDelete() {
-        given()
-                .spec(requestSpec)
-                .when()
-                .delete("/todos/1")
+    public void testDeleteAndVerifyById() {
+        // First verify the resource exists
+        api.get(1)
+                .then()
+                .statusCode(200);
+                
+        // Delete the resource (returns 200 but doesn't actually delete)
+        api.deleteTodo(1)
+                .then()
+                .statusCode(200);
+                
+        // Verify the resource still exists (JSONPlaceholder is a fake API)
+        api.get(1)
+                /*In a real wordl with a real API this would fail and the status code would be 404*/
                 .then()
                 .statusCode(200);
     }

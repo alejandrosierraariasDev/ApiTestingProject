@@ -10,11 +10,16 @@ public class ApiBaseTest {
 
     @BeforeAll
     public static void setup() {
-        RestAssured.baseURI = System.getProperty("base.uri", "https://jsonplaceholder.typicode.com");
+        String baseUri = System.getProperty("base.uri", "https://jsonplaceholder.typicode.com");
+        RestAssured.baseURI = baseUri;
 
         requestSpec = new RequestSpecBuilder()
+                .setBaseUri(baseUri)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
+        
+        // Make sure RestAssured is using our spec
+        RestAssured.requestSpecification = requestSpec;
     }
 }
