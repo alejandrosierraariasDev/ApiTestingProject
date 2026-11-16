@@ -11,26 +11,26 @@
 
 </div>
 
-## 📋 Tabla de Contenidos
-- [Características](#-características)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Pruebas Implementadas](#-pruebas-implementadas)
-- [Ejecución de Pruebas](#-ejecución-de-pruebas)
-- [Configuración](#-configuración)
-- [Dependencias](#-dependencias)
+## 📋 Table of contents
+- [Features](#-features)
+- [Project structure](#-project-structure)
+- [Implemented tests](#-implemented-tests)
+- [Configuration](#️-configuration)
+- [Running the tests](#-running-the-tests)
+- [Dependencies](#-dependencies)
 
-## 🎯 Características
+## 🎯 Features
 
-- Pruebas automatizadas para API REST
-- Uso de RestAssured para peticiones HTTP
-- Gestión de datos de prueba a través de archivos JSON
-- Configuración centralizada de la especificación de peticiones
-- Reportes interactivos con **Allure Report**
-- Soporte para múltiples entornos
-- Integración con JUnit 5
-- Generación automática de informes después de las pruebas
+- Automated REST API tests
+- RestAssured for HTTP requests
+- Test data managed through JSON files
+- Centralized request specification
+- Interactive reports with **Allure Report**
+- Support for multiple environments
+- JUnit 5 integration
+- Reports generated automatically after the tests
 
-## 📁 Estructura del Proyecto
+## 📁 Project structure
 
 ```
 ApiTestingProject/
@@ -55,95 +55,93 @@ ApiTestingProject/
 └── README.md
 ```
 
-## 🧪 Pruebas Implementadas
+## 🧪 Implemented tests
 
 ### `SimpleApiTest`
-- `testGetAll()`: Verifica la obtención de todos los recursos
-- `testGetById()`: Obtiene un recurso específico por ID
-- `testPostFromFile()`: Crea un nuevo recurso desde un archivo JSON
-- `testUpdateo()`: Actualiza un recurso existente
-- `testDeleteAndVerifyById()`: Elimina un recurso y verifica su eliminación
+- `testGetAll()`: retrieves all resources
+- `testGetById()`: retrieves one resource by ID
+- `testPostFromFile()`: creates a resource from a JSON file
+- `testUpdateo()`: updates an existing resource
+- `testDeleteAndVerifyById()`: deletes a resource and verifies it is gone
 
-### `Api` (Clase de utilidad)
-- `get(int id)`: Realiza peticiones GET
-- `deleteTodo(int id)`: Realiza peticiones DELETE
+### `Api` (utility class)
+- `get(int id)`: sends GET requests
+- `deleteTodo(int id)`: sends DELETE requests
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-1. **Requisitos previos**:
-   - Java 17 o superior
-   - Maven 3.6.3 o superior
-   - IntelliJ IDEA (recomendado)
+1. **Prerequisites**:
+   - Java 17 or later
+   - Maven 3.6.3 or later
+   - IntelliJ IDEA (recommended)
 
-2. **Variables de entorno**:
-   - `base.uri`: URL base de la API (por defecto: `https://jsonplaceholder.typicode.com`)
+2. **Environment variables**:
+   - `base.uri`: API base URL (default: `https://jsonplaceholder.typicode.com`)
 
-## 🚀 Ejecución de Pruebas
+## 🚀 Running the tests
 
-### Comandos Básicos
+### Basic commands
 
-#### Ejecutar todas las pruebas y generar informe Allure
+#### Run all tests and generate the Allure report
 ```
 mvn clean test
 ```
 
-#### Ejecutar una clase de prueba específica
+#### Run a specific test class
 ```
 mvn test -Dtest=SimpleApiTest
 ```
 
+### Reports
 
-### Generación de Informes
-
-#### Ver el informe Allure en el navegador
+#### Open the Allure report in the browser
 ```
 mvn allure:serve
 ```
-> **Nota:** Este comando inicia un servidor web local con el informe y lo abre automáticamente en tu navegador predeterminado.
+> **Note:** this starts a local web server with the report and opens it in your default browser.
 
-#### Generar informe Allure estático
+#### Generate a static Allure report
 ```
 mvn allure:report
 ```
-> **Ubicación del informe:** `target/site/allure-maven-plugin/index.html`
+> **Report location:** `target/site/allure-maven-plugin/index.html`
 
-#### Limpiar informes generados
+#### Clean generated reports
 ```
 mvn clean
 ```
 
-## 📊 Reportes con Allure
+## 📊 Allure reports
 
-Este proyecto utiliza **Allure Report** para generar informes interactivos y detallados de las pruebas. Los informes incluyen:
+This project uses **Allure Report** for interactive, detailed test reports, including:
 
-- Resumen general de las pruebas ejecutadas
-- Gráficos y estadísticas detalladas
-- Pasos de cada prueba con capturas de pantalla (si están disponibles)
-- Logs de ejecución
-- Información detallada de las peticiones y respuestas HTTP
+- An overview of the executed tests
+- Charts and detailed statistics
+- Steps of each test, with screenshots when available
+- Execution logs
+- Detailed HTTP request and response information
 
-### Ubicación de los archivos
+### File locations
 
-- **Resultados de las pruebas (raw):** `target/allure-results/`
-- **Informe generado:** `target/allure-report/` o `target/site/allure-maven-plugin/`
-- **Informe en formato estático HTML:** `target/site/allure-maven-plugin/index.html`
+- **Raw test results:** `target/allure-results/`
+- **Generated report:** `target/allure-report/` or `target/site/allure-maven-plugin/`
+- **Static HTML report:** `target/site/allure-maven-plugin/index.html`
 
-### Personalización del informe
+### Customizing the report
 
-Puedes personalizar el informe Allure añadiendo anotaciones a tus pruebas. Algunos ejemplos útiles:
+You can enrich the Allure report with annotations on your tests, for example:
 
 ```java
 @Epic("API Testing")
-@Feature("Gestión de TODOs")
-@Story("Obtener TODOs")
-@Description("Prueba para verificar la obtención de TODOs")
-@Step("Paso 1: Enviar petición GET a /todos")
+@Feature("TODO management")
+@Story("Get TODOs")
+@Description("Verifies that TODOs can be retrieved")
+@Step("Step 1: Send GET request to /todos")
 ```
 
-## 📦 Dependencias
+## 📦 Dependencies
 
-- **JUnit 5**: Framework de pruebas
-- **REST Assured**: Cliente HTTP para pruebas de API
-- **Maven Surefire**: Ejecución de pruebas
-- **Lombok**: Reducción de código boilerplate
-
+- **JUnit 5**: test framework
+- **REST Assured**: HTTP client for API testing
+- **Maven Surefire**: test execution
+- **Lombok**: less boilerplate code
